@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TaskFlow Pro 🚀
 
-## Getting Started
+TaskFlow Pro adalah aplikasi manajemen tugas modern yang dibangun dengan fokus pada kecepatan, efisiensi, dan antarmuka pengguna yang indah.
 
-First, run the development server:
+## ✨ Fitur Utama
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Manajemen Tugas**: Buat, perbarui, dan hapus tugas dengan mudah.
+- **Kategori**: Organisir tugas Anda berdasarkan kategori yang dapat disesuaikan.
+- **Prioritas**: Atur tingkat kepentingan tugas (Low, Medium, High).
+- **Notifikasi**: Dapatkan informasi real-time tentang tugas yang jatuh tempo atau pembaruan terbaru.
+- **Mode Gelap/Terang**: Dukungan penuh untuk mode gelap yang nyaman di mata.
+- **Autentikasi**: Sistem login dan registrasi yang aman menggunakan NextAuth.js.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Teknologi yang Digunakan
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 15 (App Router)
+- **Bahasa**: TypeScript
+- **Styling**: Tailwind CSS & Framer Motion (Animasi)
+- **Database**: MySQL (mysql2)
+- **Autentikasi**: NextAuth.js & BCrypt
+- **Icons**: Lucide React
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Memulai
 
-## Learn More
+### Prasyarat
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js versi terbaru
+- Database MySQL (misalnya menggunakan Laragon atau XAMPP)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Instalasi
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clone repositori**:
 
-## Deploy on Vercel
+   ```bash
+   git clone https://github.com/KevinAuliaReynaldi/taskflow-pro.git
+   cd taskflow-pro
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Instal dependensi**:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm install
+   ```
+
+3. **Konfigurasi Environment**:
+   Salin file `.env.example` (jika ada) atau buat file `.env.local` dengan variabel berikut:
+
+   ```env
+   DATABASE_HOST=localhost
+   DATABASE_NAME=taskflow_db
+   DATABASE_USER=root
+   DATABASE_PASSWORD=
+   NEXTAUTH_SECRET=rahasia_anda_di_sini
+   NEXTAUTH_URL=http://localhost:3000
+   ```
+
+4. **Jalankan aplikasi**:
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Akses aplikasi**:
+   Buka [http://localhost:3000](http://localhost:3000) di browser Anda.
+
+## 📝 Lisensi
+
+Proyek ini dibuat untuk tujuan pembelajaran dan portofolio oleh **Kevin Aulia Reynaldi**.
