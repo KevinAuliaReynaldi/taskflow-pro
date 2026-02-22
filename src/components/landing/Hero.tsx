@@ -5,6 +5,12 @@ import { ArrowRight, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
 
+/**
+ * Komponen Hero untuk halaman landing.
+ * Menampilkan judul utama, subjudul, dan tombol ajakan bertindak (CTA) dengan animasi.
+ * 
+ * @returns Elemen JSX Hero
+ */
 export default function Hero() {
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -43,30 +49,30 @@ export default function Hero() {
         >
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium mb-6">
             <CheckCircle size={16} className="mr-2" />
-            Now with Dark Mode & Advanced Filters
+            Kini dengan Mode Gelap & Filter Lanjutan
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-            Organize Your
+            Atur Pekerjaan &
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-              Work & Life
+              Hidup Anda
             </span>
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-            TaskFlow Pro helps you manage tasks, set priorities, and achieve your goals with beautiful design and powerful features.
+            TaskFlow Pro membantu Anda mengelola tugas, menetapkan prioritas, dan mencapai tujuan dengan desain indah dan fitur canggih.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link href="/register">
               <Button size="lg" className="group">
-                Get Started Free
+                Mulai Gratis
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link href="/login">
               <Button variant="secondary" size="lg">
-                Sign In
+                Masuk
               </Button>
             </Link>
           </div>
@@ -82,9 +88,9 @@ export default function Hero() {
           <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-2xl p-6 md:p-8 border border-gray-200 dark:border-gray-700">
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { title: 'Smart Priority', desc: 'High, Medium, Low' },
-                { title: 'Categories & Tags', desc: 'Organize by projects' },
-                { title: 'Due Dates', desc: 'Never miss a deadline' },
+                { title: 'Prioritas Pintar', desc: 'Tinggi, Sedang, Rendah' },
+                { title: 'Kategori & Tag', desc: 'Atur berdasarkan proyek' },
+                { title: 'Tenggat Waktu', desc: 'Jangan pernah lewatkan batas waktu' },
               ].map((feature, i) => (
                 <div key={i} className="text-center p-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-4">

@@ -5,6 +5,12 @@ import { query } from '@/lib/db'
 import DashboardStats from '@/components/dashboard/DashboardStats'
 import TaskList from '@/components/tasks/TaskList'
 
+/**
+ * Halaman Dashboard utama.
+ * Mengambil tugas dan kategori pengguna dari database dan menampilkan statistik serta daftar tugas.
+ * 
+ * @returns Elemen JSX Halaman Dashboard
+ */
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions)
 
@@ -38,9 +44,9 @@ export default async function DashboardPage() {
 
   // Calculate statistics
   const totalTasks = tasks.length
-  const completedTasks = tasks.filter((t: any) => t.status === 'completed').length
-  const pendingTasks = tasks.filter((t: any) => t.status === 'pending').length
-  const overdueTasks = tasks.filter((t: any) => {
+  const completedTasks = tasks.filter(t => t.status === 'completed').length
+  const pendingTasks = tasks.filter(t => t.status === 'pending').length
+  const overdueTasks = tasks.filter(t => {
     if (!t.due_date) return false
     const dueDate = new Date(t.due_date)
     const today = new Date()
@@ -53,10 +59,10 @@ export default async function DashboardPage() {
       {/* Welcome Header */}
       <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-white">
         <h1 className="text-3xl md:text-4xl font-bold mb-2">
-          Welcome back, {session.user?.username}!
+          Selamat datang kembali, {session.user?.username}!
         </h1>
         <p className="text-blue-100">
-          You have {pendingTasks} pending task{pendingTasks !== 1 ? 's' : ''} to complete.
+          Anda memiliki {pendingTasks} tugas tertunda untuk diselesaikan.
         </p>
       </div>
 
@@ -73,17 +79,17 @@ export default async function DashboardPage() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Your Tasks
+              Tugas Anda
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              Manage all your tasks in one place
+              Kelola semua tugas Anda di satu tempat
             </p>
           </div>
           <a
             href="/dashboard/tasks/new"
             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
           >
-            + New Task
+            + Tugas Baru
           </a>
         </div>
 

@@ -2,6 +2,7 @@ import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { compare } from 'bcrypt'
 import { query } from './db'
+import { User } from '@/types'
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -25,7 +26,7 @@ export const authOptions: NextAuthOptions = {
         const users = await query(
           'SELECT * FROM users WHERE email = ?',
           [credentials.email]
-        ) as any[]
+        ) as User[]
 
         if (users.length === 0) {
           throw new Error('Pengguna tidak ditemukan')

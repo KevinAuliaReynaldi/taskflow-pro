@@ -1,0 +1,8 @@
+﻿[96m.next/types/validator.ts[0m:[93m98[0m:[93m39[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../src/app/page.js' or its corresponding type declarations.
+
+[7m98[0m   const handler = {} as typeof import("../../src/app/page.js")
+[7m  [0m [91m                                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Found 1 error in .next/types/validator.ts[90m:98[0m
+

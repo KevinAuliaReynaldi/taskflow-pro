@@ -1,0 +1,6 @@
+﻿
+C:\laragon\www\taskflow-pro\src\components\layout\Header.tsx
+  41:9  warning  The 'fetchNotifications' function makes the dependencies of useEffect Hook (at line 60) change on every render. To fix this, wrap the definition of 'fetchNotifications' in its own useCallback() Hook  react-hooks/exhaustive-deps
+
+Γ£û 1 problem (0 errors, 1 warning)
+

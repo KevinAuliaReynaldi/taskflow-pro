@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { query } from '@/lib/db'
+import { Category } from '@/types'
 
 /**
  * Menangani permintaan GET untuk mengambil semua kategori milik pengguna.
@@ -19,7 +20,7 @@ export async function GET(request: NextRequest) {
     const categories = await query(
       'SELECT * FROM categories WHERE user_id = ? ORDER BY name ASC',
       [session.user.id]
-    )
+    ) as Category[]
 
     return NextResponse.json(categories)
   } catch (error) {
@@ -62,7 +63,7 @@ export async function POST(request: NextRequest) {
     const categories = await query(
       'SELECT * FROM categories WHERE id = ?',
       [result.insertId]
-    ) as any[]
+    ) as Category[]
 
     return NextResponse.json(
       { 

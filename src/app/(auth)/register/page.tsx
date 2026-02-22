@@ -6,6 +6,12 @@ import Link from 'next/link'
 import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 
+/**
+ * Halaman Registrasi.
+ * Memungkinkan pengguna baru untuk membuat akun TaskFlow Pro dengan mengisi email, username, dan kata sandi.
+ * 
+ * @returns Elemen JSX Halaman Registrasi
+ */
 export default function RegisterPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -23,13 +29,13 @@ export default function RegisterPage() {
     setError('')
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match')
+      setError('Kata sandi tidak cocok')
       setLoading(false)
       return
     }
 
     if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters')
+      setError('Kata sandi harus minimal 6 karakter')
       setLoading(false)
       return
     }
@@ -50,12 +56,12 @@ export default function RegisterPage() {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || 'Registration failed')
+        throw new Error(data.error || 'Registrasi gagal')
       }
 
       router.push('/login?registered=true')
     } catch (error: any) {
-      setError(error.message || 'An error occurred. Please try again.')
+      setError(error.message || 'Terjadi kesalahan. Silakan coba lagi.')
     } finally {
       setLoading(false)
     }
@@ -72,10 +78,10 @@ export default function RegisterPage() {
     <div className="space-y-6">
       <div className="text-center">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-          Create Account
+          Buat Akun
         </h2>
         <p className="text-gray-600 dark:text-gray-400 mt-2">
-          Get started with TaskFlow Pro
+          Mulai dengan TaskFlow Pro
         </p>
       </div>
 
@@ -88,7 +94,7 @@ export default function RegisterPage() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Email Address
+            Alamat Email
           </label>
           <Input
             type="email"
@@ -102,7 +108,7 @@ export default function RegisterPage() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Username
+            Nama Pengguna (Username)
           </label>
           <Input
             type="text"
@@ -116,7 +122,7 @@ export default function RegisterPage() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Password
+            Kata Sandi
           </label>
           <Input
             type="password"
@@ -130,7 +136,7 @@ export default function RegisterPage() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Confirm Password
+            Konfirmasi Kata Sandi
           </label>
           <Input
             type="password"
@@ -147,17 +153,17 @@ export default function RegisterPage() {
           disabled={loading}
           className="w-full"
         >
-          {loading ? 'Creating account...' : 'Create Account'}
+          {loading ? 'Membuat akun...' : 'Buat Akun'}
         </Button>
       </form>
 
       <div className="text-center text-sm text-gray-600 dark:text-gray-400">
-        Already have an account?{' '}
+        Sudah punya akun?{' '}
         <Link 
           href="/login" 
           className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400"
         >
-          Sign in
+          Masuk
         </Link>
       </div>
     </div>

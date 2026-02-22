@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { query } from '@/lib/db'
+import { Task } from '@/types'
 
 /**
  * Menangani permintaan GET untuk mengambil notifikasi pengguna.
@@ -25,7 +26,7 @@ export async function GET(request: NextRequest) {
     const undoneCount = undoneCountResult[0]?.count || 0
 
     // 2. Ambil tugas yang baru saja diperbarui
-    let recentUpdates: any[] = []
+    let recentUpdates: Partial<Task>[] = []
     try {
         recentUpdates = await query(
             `SELECT t.id, t.title, t.status, t.updated_at 
@@ -34,7 +35,7 @@ export async function GET(request: NextRequest) {
              ORDER BY t.updated_at DESC 
              LIMIT 5`,
             [session.user.id]
-        ) as any[]
+        ) as Partial<Task>[]
     } catch (e) {
         // Fallback jika kolom updated_at tidak ada atau terjadi kesalahan lain
         console.warn('Gagal mengambil berdasarkan updated_at, beralih ke created_at', e)
@@ -45,7 +46,7 @@ export async function GET(request: NextRequest) {
              ORDER BY t.created_at DESC 
              LIMIT 5`,
             [session.user.id]
-        ) as any[]
+        ) as Partial<Task>[]
     }
 
     return NextResponse.json({

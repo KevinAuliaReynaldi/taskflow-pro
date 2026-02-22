@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { query } from '@/lib/db'
+import { Task } from '@/types'
 
 /**
  * Menangani permintaan GET untuk mengambil semua tugas milik pengguna yang sedang login.
@@ -61,7 +62,7 @@ export async function GET(request: NextRequest) {
       END,
       t.created_at DESC`
 
-    const tasks = await query(sql, params)
+    const tasks = await query(sql, params) as Task[]
     return NextResponse.json(tasks)
   } catch (error) {
     console.error('Gagal mengambil tugas:', error)
@@ -116,7 +117,7 @@ export async function POST(request: NextRequest) {
        LEFT JOIN categories c ON t.category_id = c.id
        WHERE t.id = ?`,
       [result.insertId]
-    ) as any[]
+    ) as Task[]
 
     return NextResponse.json(
       {

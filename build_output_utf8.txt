@@ -1,0 +1,67 @@
+﻿
+> taskflow-pro@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.1 (Turbopack)
+- Environments: .env.local
+
+node.exe : ΓÜá The 
+"middleware" file 
+convention is 
+deprecated. Please 
+use "proxy" instead. 
+Learn more: https://n
+extjs.org/docs/messag
+es/middleware-to-prox
+y
+At line:1 char:1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (ΓÜá The   
+  "middle...lewar    
+e-to-proxy:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 4.7s
+  Running TypeScript ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/12) ...
+  Generating static pages using 7 workers (3/12) 
+  Generating static pages using 7 workers (6/12) 
+  Generating static pages using 7 workers (9/12) 
+Γ£ô Generating static pages using 7 workers (12/12) in 263.2ms
+  Finalizing page optimization ...
+
+Route (app)
+Γöî ╞Æ /
+Γö£ ╞Æ /_not-found
+Γö£ ╞Æ /api/auth/[...nextauth]
+Γö£ ╞Æ /api/auth/register
+Γö£ ╞Æ /api/categories
+Γö£ ╞Æ /api/notifications
+Γö£ ╞Æ /api/tasks
+Γö£ ╞Æ /api/tasks/[id]
+Γö£ ╞Æ /dashboard
+Γö£ ╞Æ /dashboard/tasks/new
+Γö£ ╞Æ /login
+Γöö ╞Æ /register
+
+
+╞Æ Proxy (Middleware)
+
+╞Æ  (Dynamic)  server-rendered on demand
+

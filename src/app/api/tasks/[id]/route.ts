@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { query } from '@/lib/db'
+import { Task } from '@/types'
 
 interface RouteParams {
   params: Promise<{ id: string }>
@@ -40,7 +41,7 @@ export async function GET(
        LEFT JOIN categories c ON t.category_id = c.id
        WHERE t.id = ? AND t.user_id = ?`,
       [taskId, session.user.id]
-    ) as any[]
+    ) as Task[]
 
     if (tasks.length === 0) {
       return NextResponse.json(
@@ -102,7 +103,7 @@ export async function PATCH(
 
     // Bangun query pembaruan secara dinamis
     const updates: string[] = []
-    const values: any[] = []
+    const values: (string | number | null)[] = []
 
     if (body.title !== undefined) {
       updates.push('title = ?')
@@ -164,7 +165,7 @@ export async function PATCH(
        LEFT JOIN categories c ON t.category_id = c.id
        WHERE t.id = ?`,
       [taskId]
-    ) as any[]
+    ) as Task[]
 
     return NextResponse.json({
       message: 'Tugas berhasil diperbarui',

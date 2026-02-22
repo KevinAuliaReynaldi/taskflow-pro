@@ -7,6 +7,12 @@ import Link from 'next/link'
 import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 
+/**
+ * Halaman Login.
+ * Memungkinkan pengguna yang sudah terdaftar untuk masuk ke aplikasi menggunakan email dan kata sandi.
+ * 
+ * @returns Elemen JSX Halaman Login
+ */
 export default function LoginPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -29,13 +35,13 @@ export default function LoginPage() {
       })
 
       if (result?.error) {
-        setError('Invalid email or password')
+        setError('Email atau kata sandi salah')
       } else {
         router.push('/dashboard')
         router.refresh()
       }
     } catch (error) {
-      setError('An error occurred. Please try again.')
+      setError('Terjadi kesalahan. Silakan coba lagi.')
     } finally {
       setLoading(false)
     }
@@ -52,10 +58,10 @@ export default function LoginPage() {
     <div className="space-y-6">
       <div className="text-center">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-          Welcome Back
+          Selamat Datang Kembali
         </h2>
         <p className="text-gray-600 dark:text-gray-400 mt-2">
-          Sign in to your account
+          Masuk ke akun Anda
         </p>
       </div>
 
@@ -68,7 +74,7 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Email Address
+            Alamat Email
           </label>
           <Input
             type="email"
@@ -83,13 +89,13 @@ export default function LoginPage() {
         <div>
           <div className="flex items-center justify-between mb-1">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              Password
+              Kata Sandi
             </label>
             <Link 
               href="#" 
               className="text-sm text-blue-600 hover:text-blue-500 dark:text-blue-400"
             >
-              Forgot password?
+              Lupa kata sandi?
             </Link>
           </div>
           <Input
@@ -107,17 +113,17 @@ export default function LoginPage() {
           disabled={loading}
           className="w-full"
         >
-          {loading ? 'Signing in...' : 'Sign In'}
+          {loading ? 'Masuk...' : 'Masuk'}
         </Button>
       </form>
 
       <div className="text-center text-sm text-gray-600 dark:text-gray-400">
-        Don&apos;t have an account?{' '}
+        Belum punya akun?{' '}
         <Link 
           href="/register" 
           className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400"
         >
-          Sign up
+          Daftar
         </Link>
       </div>
     </div>

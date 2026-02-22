@@ -28,7 +28,7 @@ export default async function CreateTaskPage() {
     // user_id might be null in DB? schema says user_id: number.
   }))
 
-  return <CreateTaskClient categories={serializedCategories as any} /> 
+  return <CreateTaskClient categories={serializedCategories} /> 
   // Cast specific types if mismatch on date string vs Date object, 
   // but Category type in 'types/index.ts' has created_at: string.
 }

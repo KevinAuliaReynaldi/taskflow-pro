@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import { 
@@ -13,6 +13,8 @@ import {
   Bell
 } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
+import { Session } from 'next-auth'
+import { Task } from '@/types'
 
 /**
  * Properti untuk komponen Header.
@@ -20,7 +22,7 @@ import ThemeToggle from './ThemeToggle'
  * @property session Sesi pengguna dari server (opsional)
  */
 interface HeaderProps {
-  session: any // Menggunakan any karena session bisa berasal dari server atau client
+  session: Session | null
 }
 
 /**
@@ -34,11 +36,11 @@ export default function Header({ session }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
   const [notificationMenuOpen, setNotificationMenuOpen] = useState(false)
-  const [notifications, setNotifications] = useState({ undoneCount: 0, recentUpdates: [] as any[] })
+  const [notifications, setNotifications] = useState({ undoneCount: 0, recentUpdates: [] as Partial<Task>[] })
   const { data: clientSession } = useSession()
   const currentSession = clientSession || session
 
-  const fetchNotifications = async () => {
+  const fetchNotifications = useCallback(async () => {
     if (!currentSession?.user?.id) return
     try {
       const res = await fetch('/api/notifications')
@@ -49,7 +51,7 @@ export default function Header({ session }: HeaderProps) {
     } catch (error) {
       console.error('Failed to fetch notifications', error)
     }
-  }
+  }, [currentSession?.user?.id])
 
   // Poll for notifications every 30 seconds
   // Also fetch on mount
@@ -57,7 +59,7 @@ export default function Header({ session }: HeaderProps) {
     fetchNotifications()
     const interval = setInterval(fetchNotifications, 30000)
     return () => clearInterval(interval)
-  }, [currentSession])
+  }, [currentSession, fetchNotifications])
 
   const navigation = currentSession ? [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -135,7 +137,7 @@ export default function Header({ session }: HeaderProps) {
                         ) : (
                           <div className="divide-y divide-gray-100 dark:divide-gray-700">
                             {notifications.recentUpdates.map((task, idx) => (
-                              <div key={task.id} className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors">
+                              <div key={task.id} className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                                 <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
                                   {task.title}
                                 </p>
@@ -148,7 +150,7 @@ export default function Header({ session }: HeaderProps) {
                                     {task.status}
                                   </span>
                                   <span className="text-xs text-gray-500 dark:text-gray-400">
-                                    Updated {new Date(task.updated_at).toLocaleDateString()}
+                                    Updated {task.updated_at ? new Date(task.updated_at).toLocaleDateString() : 'N/A'}
                                   </span>
                                 </div>
                               </div>

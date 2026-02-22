@@ -1,19 +1,39 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
+/**
+ * Menggabungkan nama kelas CSS menggunakan clsx dan tailwind-merge.
+ * Berguna untuk menangani konflik kelas Tailwind secara dinamis.
+ * 
+ * @param inputs Daftar nama kelas atau nilai kondisional
+ * @returns String nama kelas yang sudah digabungkan
+ */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+/**
+ * Mengformat string tanggal atau objek Date menjadi format yang mudah dibaca.
+ * Menggunakan locale id-ID (Bahasa Indonesia).
+ * 
+ * @param dateString Tanggal dalam bentuk string atau objek Date
+ * @returns String tanggal terformat (contoh: 22 Feb 2026)
+ */
 export function formatDate(dateString: string | Date): string {
   const date = new Date(dateString)
-  return date.toLocaleDateString('en-US', {
+  return date.toLocaleDateString('id-ID', {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
   })
 }
 
+/**
+ * Memberikan kelas warna latar belakang dan teks berdasarkan tingkat prioritas.
+ * 
+ * @param priority Tingkat prioritas (high, medium, low)
+ * @returns String kelas CSS Tailwind untuk warna
+ */
 export function getPriorityColor(priority: string): string {
   switch (priority) {
     case 'high':
@@ -27,6 +47,12 @@ export function getPriorityColor(priority: string): string {
   }
 }
 
+/**
+ * Memberikan kelas warna latar belakang dan teks berdasarkan status tugas.
+ * 
+ * @param status Status tugas (completed, in_progress, pending)
+ * @returns String kelas CSS Tailwind untuk warna
+ */
 export function getStatusColor(status: string): string {
   switch (status) {
     case 'completed':
@@ -40,6 +66,12 @@ export function getStatusColor(status: string): string {
   }
 }
 
+/**
+ * Memeriksa apakah tanggal jatuh tempo sudah lewat dari hari ini.
+ * 
+ * @param dueDate Tanggal jatuh tempo dalam bentuk string
+ * @returns True jika sudah lewat, false jika belum
+ */
 export function isOverdue(dueDate: string): boolean {
   const due = new Date(dueDate)
   const today = new Date()

@@ -11,10 +11,17 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'TaskFlow Pro - Modern Task Management',
-  description: 'A beautiful and efficient task management application',
+  title: 'TaskFlow Pro - Manajemen Tugas Modern',
+  description: 'Aplikasi manajemen tugas yang indah dan efisien untuk produktivitas Anda',
 }
 
+/**
+ * Layout akar (Root Layout) untuk seluruh aplikasi.
+ * Menyediakan ThemeProvider, AuthProvider, serta komponen Header dan Footer.
+ * 
+ * @param props Properti children
+ * @returns Elemen JSX Layout Akar
+ */
 export default async function RootLayout({
   children,
 }: {
@@ -23,7 +30,7 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions)
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="id" suppressHydrationWarning>
       <body className={`${inter.className} bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200`}>
         <ThemeProvider>
           <AuthProvider>

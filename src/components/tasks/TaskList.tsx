@@ -6,12 +6,22 @@ import TaskItem from './TaskItem'
 import TaskFilter from './TaskFilter'
 import { Task, Category } from '@/types'
 
+/**
+ * Properti untuk komponen TaskList.
+ * 
+ * @property initialTasks Daftar tugas awal yang akan ditampilkan
+ * @property categories Daftar kategori yang tersedia untuk filter
+ * @property onTasksChange Callback fungsi saat terjadi perubahan pada tugas (tambah/hapus/edit)
+ */
 interface TaskListProps {
   initialTasks: Task[]
   categories: Category[]
   onTasksChange?: () => void
 }
 
+/**
+ * Komponen utama untuk menampilkan daftar tugas dengan fitur filter, pencarian, dan manajemen tugas.
+ */
 export default function TaskList({ initialTasks, categories, onTasksChange }: TaskListProps) {
   const [tasks, setTasks] = useState<Task[]>(initialTasks)
   const [filteredTasks, setFilteredTasks] = useState<Task[]>(initialTasks)
@@ -132,12 +142,12 @@ export default function TaskList({ initialTasks, categories, onTasksChange }: Ta
               </svg>
             </div>
             <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
-              No tasks found
+              Tidak ada tugas ditemukan
             </h3>
             <p className="text-gray-600 dark:text-gray-400">
               {tasks.length === 0 
-                ? "Get started by creating your first task!" 
-                : "Try changing your filters or search query"}
+                ? "Mulai dengan membuat tugas pertama Anda!" 
+                : "Coba ubah filter atau kata kunci pencarian Anda"}
             </p>
           </div>
         </motion.div>
